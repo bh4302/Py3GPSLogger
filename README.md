@@ -9,43 +9,43 @@ Materials Required:
 
 Installation Instructions:
 First, update all required packages...
-```
+```python
 sudo apt-get update
 ```
-```
+```python
 sudo apt-get upgrade
 ```
-```
+```python
 sudo apt-get autoremove
 ```
-```
+```python
 sudo reboot
 ```
 ...then, install the required gspd-client packages/libraries...
-```
+```python
 sudo apt-get install gpsd gpsd-clients
 ```
-```
+```python
 pip install gpsd-py3 --break-system-packages
 ```
-```
+```python
 sudo reboot
 ```
 ...now, clone the github code to your home directory...
-```
+```python
 cd ~
 ```
-```
+```python
 git clone https://github.com/bh4302/Py3GPSLogger.git
 ```
 ...and you now have the code installed!
 
 Running Instructions:
 To run the code and begin recording data, navigate to the directory where it was installed...
-```
+```python
 cd Py3GPSLogger/
 ```
-```
+```python
 python gps_logger_v2.py
 ```
 ...and use Ctrl^C to stop data recording.
