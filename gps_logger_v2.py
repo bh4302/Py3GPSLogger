@@ -8,7 +8,7 @@ def get_gps_data(gpsd_socket):
         try:
             report = gpsd_socket.next()
             
-            if report['class'] == 'TPV':
+            if report is not None and report['class'] == 'TPV':
                 # Only consider TPV (Time, Position, Velocity) reports
                 return report
 
@@ -19,16 +19,18 @@ def get_gps_data(gpsd_socket):
             # Handle keyboard interrupt to stop the script
             break
         except Exception as e:
-            print(f"Error: {e}")
+            print(f"Error in get_gps_data: {e}")
+
+    return None  # Return None if no valid GPS data is obtained
 
 def write_to_csv(data, writer):
     # Write GPS data to the CSV file
     writer.writerow({
-        'timestamp': data.get('time', ''),
-        'latitude': data.get('lat', ''),
-        'longitude': data.get('lon', ''),
-        'altitude': data.get('alt', ''),
-        'speed': data.get('speed', '')*2.236, #m/s converted to mph
+        'timestamp': data.get('time', '') if 'time' in data else '',
+        'latitude': data.get('lat', '') if 'lat' in data else '',
+        'longitude': data.get('lon', '') if 'lon' in data else '',
+        'altitude': data.get('alt', '') if 'alt' in data else '',
+        'speed': data.get('speed', '')*2.236 if 'speed' in data else 0.0,  # m/s to mph
     })
 
 def get_log_filename():
@@ -54,9 +56,10 @@ if __name__ == '__main__':
 
             while True:
                 gps_data = get_gps_data(gpsd_socket)
-                print(f"Timestamp: {gps_data.get('time')}, Latitude: {gps_data.get('lat')}, Longitude: {gps_data.get('lon')}, Altitude: {gps_data.get('alt')}, Speed: {gps_data.get('speed')}")
+                if gps_data is not None:
+                    print(f"Timestamp: {gps_data.get('time', '')}, Latitude: {gps_data.get('lat', '')}, Longitude: {gps_data.get('lon', '')}, Altitude: {gps_data.get('alt', '')}, Speed: {gps_data.get('speed', '')}")
 
-                write_to_csv(gps_data, writer)
+                    write_to_csv(gps_data, writer)
 
                 time.sleep(0.1)  # Record data at 10 Hz (0.1 seconds per loop)
 
