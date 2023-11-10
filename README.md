@@ -42,7 +42,7 @@ git clone https://github.com/bh4302/Py3GPSLogger.git
 Running Instructions:
 To run the code and begin recording data, navigate to the directory where it was installed...
 ```
-cd Py3GPSLogger
+cd Py3GPSLogger/
 ```
 ```
 python gps_logger_v2.py
