@@ -1,5 +1,6 @@
 # Py3GPSLogger
 Ublox USB GPS Data Logger for Use with Raspberry Pi 4 Running Python 3 Environment within Raspberry Pi OS x64
+Code Created by Brayden Hill on 11/10/2023 for UNC Charlotte MEGR 3241: Advanced Motorsports Instrumentation
 
 Materials Required:
 1. Raspberry Pi 4 with Raspberry Pi OS x64 Installed
