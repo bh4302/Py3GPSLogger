@@ -46,7 +46,7 @@ To run the code and begin recording data, navigate to the directory where it was
 cd Py3GPSLogger/
 ```
 ```python
-python gps_logger_v2.py
+python gps_logger.py
 ```
 ...and use Ctrl^C to stop data recording.
 
